@@ -21,10 +21,10 @@ Suggest video: https://www.youtube.com/watch?v=fR_LWWtZJlQ
 -----------------------------------------------------
 ### Build on:
 -----------------------------------------------------
-#### Front:
+#### Front: Service architecture
 * Framework: 		Angular 6 language (TypeScript)
 * Design Framework:	Materialice
 
-#### Back
+#### Back: Layers architecture
 * Php 5.*
 * Apache server 
