@@ -1,5 +1,6 @@
 # katabatman
-Sistema de Asertijo de decodificacion
+Sistema de Asertijo de decodificacion, basado en cifrado de Cesar y Vigenere.
+![kata_screen](https://user-images.githubusercontent.com/12938424/54511052-a3a6af00-491d-11e9-9085-04f88bfecc5b.png)
 
 ### Requirements
 1. Git installed
