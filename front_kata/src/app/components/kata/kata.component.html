@@ -1,0 +1,107 @@
+
+  <div class="row">
+    <div class="col s9">
+      <div class="row">
+          <div class="col">
+              <i class="medium material-icons">grid_on</i>
+          </div>
+          <div class="col">
+              <h5 (ngModel)="apellido">{{tb_title}}</h5> <span>Developed by Dionicio Tarco Quito</span>
+          </div>
+      </div>
+      <table class="responsive-table centered">
+        <thead>
+          <tr>
+              <th class="z-depth-2">Cod</th>
+              <th class="z-depth-2">V1</th><th class="z-depth-2">V2</th><th class="z-depth-2">V3</th><th class="z-depth-2">V4</th><th class="z-depth-2">V5</th>
+              <th class="z-depth-2">V6</th><th class="z-depth-2">V7</th><th class="z-depth-2">V8</th><th class="z-depth-2">V9</th><th class="z-depth-2">V10</th>
+              <th class="z-depth-2">V11</th><th class="z-depth-2">V12</th><th class="z-depth-2">V13</th><th class="z-depth-2">V14</th><th class="z-depth-2">V15</th>
+              <th class="z-depth-2">V16</th><th class="z-depth-2">V17</th><th class="z-depth-2">V18</th><th class="z-depth-2">V19</th><th class="z-depth-2">V20</th>
+              <th class="z-depth-2">V21</th><th class="z-depth-2">V22</th><th class="z-depth-2">V23</th><th class="z-depth-2">V24</th><th class="z-depth-2">V25</th><th class="z-depth-2">V26</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vl of tbl; let idx = index">
+              <td class="z-depth-2">{{idx+1}}</td>
+              <td class="z-depth-2">{{vl.v0}}</td><td class="z-depth-2">{{vl.v1}}</td><td class="z-depth-2">{{vl.v2}}</td><td class="z-depth-2">{{vl.v3}}</td><td class="z-depth-2">{{vl.v4}}</td><td class="z-depth-2">{{vl.v5}}</td>
+              <td class="z-depth-2">{{vl.v6}}</td><td class="z-depth-2">{{vl.v7}}</td><td class="z-depth-2">{{vl.v8}}</td><td class="z-depth-2">{{vl.v9}}</td><td class="z-depth-2">{{vl.v10}}</td>
+              <td class="z-depth-2">{{vl.v11}}</td><td class="z-depth-2">{{vl.v12}}</td><td class="z-depth-2">{{vl.v13}}</td><td class="z-depth-2">{{vl.v14}}</td><td class="z-depth-2">{{vl.v15}}</td>
+              <td class="z-depth-2">{{vl.v16}}</td><td class="z-depth-2">{{vl.v17}}</td><td class="z-depth-2">{{vl.v18}}</td><td class="z-depth-2">{{vl.v19}}</td><td class="z-depth-2">{{vl.v20}}</td>
+              <td class="z-depth-2">{{vl.v21}}</td><td class="z-depth-2">{{vl.v22}}</td><td class="z-depth-2">{{vl.v23}}</td><td class="z-depth-2">{{vl.v24}}</td><td class="z-depth-2">{{vl.v25}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col s3">
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col">
+                  <i class="small material-icons">no_encryption</i>
+              </div>
+              <div class="col">
+                  <header>3. MENSAJE DECODIFICADO</header>
+              </div>
+            </div>
+            <div class="row" *ngIf="dec_data.length">
+                <div class="input-field"><span class="inline" (ngModel)="dec_data">{{dec_data}}</span></div>
+                <div><button  class="btn right" type="reset" (click)="resetSms()">Clear</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col">
+                  <i class="small material-icons">list</i>
+              </div>
+              <div class="col">
+                  <header>2. LISTA CODIFICACIONES</header>
+              </div>
+            </div>
+            <form #codsForm="ngForm" (ngSubmit)="decryptKata()" *ngIf="ktaService.katas.length">
+              <div class="row">
+                <table>
+                  <thead><tr><th>Codigo</th><th>Valor</th></tr></thead>
+                  <tbody>
+                    <tr *ngFor="let cd of ktaService.katas">
+                      <td>{{cd.cod}}</td><td>{{cd.val}}</td>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <button class="btn right" type="submit" style="margin-left: 4px">Decode</button>
+                <button class="btn right" type="button" (click)="resetCodes()">Clean</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+              <div class="row">
+                <div class="col">
+                    <i class="small material-icons">enhanced_encryption</i>
+                </div>
+                <div class="col">
+                    <header>1. INGRESO CODIFICADO</header>
+                </div>
+              </div>
+            <form #kataForm="ngForm" (ngSubmit)="addKata(kataForm)">
+              <div class="row">
+                <div class="input-field col s5">
+                  <input name="dCode" #dcodigo="ngModel" pattern="[0-9]{1,2}" [(ngModel)]="ktaService.selectedKata.cod" placeholder="Codigo">
+                  <span *ngIf="dcodigo.errors?.pattern">Ingrese Numeros hasta 2 cifras de 1-25.</span>
+                </div>
+                <div class="input-field col s7">
+                  <input pattern="[a-z_-]{1,25}$" name="dValue" #dvalor="ngModel" required [(ngModel)]="ktaService.selectedKata.val" placeholder="Valor">
+                  <span *ngIf="dvalor.errors?.pattern">Ingrese solo Letras maximo de 25 caracteres.</span>
+                </div>
+              </div>
+              <div class="row" *ngIf="!dvalor.errors && !dcodigo.errors">
+                <button class="btn right" *ngIf="ktaService.selectedKata.cod && ktaService.selectedKata.val" type="submit">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>  
