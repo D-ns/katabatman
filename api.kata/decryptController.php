@@ -9,14 +9,16 @@ class asertijoController {
      * @return  json
      */
     public function getinformacionBase(){
-        if ([$_REQUEST]) { 
-			$dm =  new asertijoModel();
-            $res = $dm->infoBase(isset($_data->data)?$_data->data:null);
+        if (isset($_REQUEST)) {
+            $dm =  new asertijoModel();
+            $data = $_REQUEST['data'];
+            $res = $dm->infoBase(isset($data)?$data:null);
 			echo json_encode($res);
         } else {
-            $res = ["status" => 400,
+            $res = array(
+                    "status" => 400,
                     "mensaje" => "Error en el proceso"
-                ];
+                );
 			echo json_encode($res);
         }
     }
@@ -36,9 +38,10 @@ class asertijoController {
             $res = $dm->desencriptCodigo($_data->data);
 			echo json_encode($res);
         } else {
-            $res = ["status" => 400,
-                    "mensaje" => "Error en el proceso"
-                ];
+            $res = array(
+                "status" => 400,
+                "mensaje" => "Error en el proceso"
+            );
             echo json_encode($res);
         }
     }
