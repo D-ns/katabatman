@@ -12,7 +12,7 @@ Sistema de Asertijo de decodificacion, basado en cifrado de Cesar y Vigenere.
 2.	Cut api.kata folder from katabatman folder and paste in htdocs folder (apache server)
 3. 	Run apache server
 4.	Check api apache server port on kataBatman\front_kata\src\app\services\kta.service.ts 
-5. 	Access to from_kata directory from console
+5. 	Access to front_kata directory from console
 6. 	$ npm install
 7.	$ npm start
 8.	Open browser: http://localhost:4200/
